@@ -1,0 +1,9 @@
+package com.schedule.task.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.schedule.task.entity.Task;
+
+public interface TaskRepository extends CrudRepository<Task, Long>{
+
+}

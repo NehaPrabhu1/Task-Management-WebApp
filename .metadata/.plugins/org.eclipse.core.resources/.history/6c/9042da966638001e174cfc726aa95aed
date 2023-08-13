@@ -1,0 +1,18 @@
+package com.schedule.task.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Task {
+	
+	private Long id;
+	
+	private String title;
+	
+	private String type;
+	
+	private Date dueDate;
+	
+	private String description;
+
+}
