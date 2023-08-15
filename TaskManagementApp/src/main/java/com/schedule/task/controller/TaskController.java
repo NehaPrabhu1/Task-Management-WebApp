@@ -24,7 +24,6 @@ import com.schedule.task.service.TaskService;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin("*")
 public class TaskController {
 	
 	@Autowired
