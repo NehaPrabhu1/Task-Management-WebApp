@@ -14,20 +14,26 @@ export class HomeComponent {
    typeCount:number = 0;
    type:String[]=[];
    data:number[]=[];
-
+   public doughnutChartLabels: String[]=[];
+   public doughnutChartData:any;
+   public doughnutChartType: ChartType = 'doughnut';
+   public doughnutChartOptions:ChartOptions={};
    constructor(private taskService:TaskService){
    }
-
-  public doughnutChartLabels: String[] = this.type;
-  public doughnutChartData: ChartData<'doughnut'> = {
+  createChart(){
+     this.doughnutChartLabels = this.type;
+   this.doughnutChartData = {
     labels: this.doughnutChartLabels,
     datasets: [
       { data: this.data,
         backgroundColor:["#FF7360", "#6FC8CE", "#F2FCC4", "#B9E8E0"] }
     ],
   };
-  
-  public doughnutChartType: ChartType = 'doughnut';
+  this.doughnutChartOptions = {
+    responsive: true,
+  };
+
+  }
 
   // events
   public chartClicked({
@@ -49,9 +55,7 @@ export class HomeComponent {
   }): void {
     console.log(event, active);
   }
-  public doughnutChartOptions:ChartOptions = {
-    responsive: true,
-  };
+  
 
   ngOnInit(){
     this.taskService.getCountPercentType().subscribe(res=>
@@ -60,6 +64,7 @@ export class HomeComponent {
         this.typeData.forEach((data)=>{
           this.type.push(data.type);
           this.data.push(data.count_percent);
+          this.createChart();
         })
       });
   }

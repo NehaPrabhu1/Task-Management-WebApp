@@ -1,20 +1,41 @@
 
 <div class="list">
-    <h1>Tasks</h1>
+    <h1>Remaining Tasks</h1>
     <mat-selection-list [multiple]="false">
       <div class="mat-list-option-cover">
         <mat-list-option
-          *ngFor="let task of this.tasks">
+          *ngFor="let task of this.remainingTasks">
           <div class="d-flex justify-content-between">
             <span class="task-title">
               {{ task.title.substring(0, 40) }}
               {{ task.title.length > 40 ? "..." : "" }}
             </span>
-            <span class="task-date">
+            <span class="task-type" style="color: red;">
+              {{ task.type }}
+            </span>
+            <span class="task-date" style="float: right;">
               {{ task.dueDate | date: "mediumDate" }}
             </span>
-            <span class="task-date">
+          </div>
+        </mat-list-option>
+      </div>
+    </mat-selection-list>
+
+    <h1>Completed Tasks</h1>
+    <mat-selection-list [multiple]="false">
+      <div class="mat-list-option-cover">
+        <mat-list-option
+          *ngFor="let task of this.completedTasks">
+          <div class="d-flex justify-content-between">
+            <span class="task-title">
+              {{ task.title.substring(0, 40) }}
+              {{ task.title.length > 40 ? "..." : "" }}
+            </span>
+            <!-- <span class="task-type">
               {{ task.type }}
+            </span> -->
+            <span class="task-date" style="float: right;">
+              {{ task.dueDate | date: "mediumDate" }}
             </span>
           </div>
         </mat-list-option>

@@ -16,4 +16,12 @@ export class TaskService {
   getCountPercentType(){
     return this.httpClient.get<TypePercentage[]>('http://localhost:8080/api/v1/task/type/count');
   }
+
+  getRemainingTasks(){
+    return this.httpClient.get<Task[]>('http://localhost:8080/api/v1/tasks/remaining');
+  }
+
+  getCompletedTasks(){
+    return this.httpClient.get<Task[]>('http://localhost:8080/api/v1/task/type/Completed');
+  }
 }

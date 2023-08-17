@@ -21,7 +21,7 @@ public class TaskService {
 	private TaskRepository taskRepository;
 	
 	public List<Task> getAllTasks(){
-		return (List<Task>) taskRepository.findAll();
+		return  (List<Task>) taskRepository.findAll(Sort.by(Direction.ASC, "dueDate"));
 	}
 	
 	public Task saveTask(Task task) {

@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.schedule.task.dto.CountType;
 import com.schedule.task.entity.Task;
 
-public interface TaskRepository extends CrudRepository<Task, Long>{
+public interface TaskRepository extends CrudRepository<Task, Long>, PagingAndSortingRepository<Task, Long>{
 	
 	public List<Task> findByType(String type);
 	
@@ -19,7 +20,7 @@ public interface TaskRepository extends CrudRepository<Task, Long>{
 	
 	@Query("select new com.schedule.task.dto.CountType(type, "
 			+ "COUNT(*)*100.00/(select count(*) from Task)) "
-			+ "from Task group by type")
+			+ "from Task group by type order by type")
 	public List<CountType> getGroupByType();
 	
 	@Query("select new com.schedule.task.dto.CountType(type, "

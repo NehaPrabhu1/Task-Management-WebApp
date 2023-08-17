@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListComponent {
   tasks:Task[] = [];
+  remainingTasks:Task[] = [];
+  completedTasks:Task[] = [];
 
   constructor(private taskService:TaskService){}
 
@@ -19,8 +21,11 @@ export class ListComponent {
   }
   getTasks() {
     this.taskService.getTaskList().subscribe(res=>this.tasks=res,err=>console.log(err));
+    this.taskService.getRemainingTasks().subscribe(res=>this.remainingTasks=res);
+    this.taskService.getCompletedTasks().subscribe(res=>this.completedTasks=res);
   }
 
+  
 
 
 
